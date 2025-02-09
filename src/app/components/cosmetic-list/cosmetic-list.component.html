@@ -1,7 +1,21 @@
-<div class="row">
+<div class="row p-2">
 
+  <div class="col-md-6">
+
+      <div class="input-group">
+        <div class="input-group-prepend">
+         <span class="input-group-text" id="basic-addon1">
+          <fa-icon [icon]="faSearch"></fa-icon>
+        </span>
+        </div>
+        <input type="text" class="form-control" placeholder="Search"
+               aria-label="Search" aria-describedby="basic-addon1"
+               (input)="buscar($event)">
+      </div>
+
+  </div>
   <!-- Pagination -->
-  <div class="col-12 d-flex justify-content-center align-content-center">
+  <div class="col-md-6 d-flex justify-content-center align-content-center">
     <ngb-pagination
       [collectionSize]="totalPage"
       [pageSize]="pageSize"
@@ -10,6 +24,10 @@
       [rotate]="true">
     </ngb-pagination>
   </div>
+
+</div>
+
+<div class="row">
 
   @for (cosmetico of cosmeticos;track cosmetico._id){
     <div class="col-md-4">

@@ -4,8 +4,9 @@ import {CosmeticService} from "../../services/cosmetic.service";
 import {Cosmetico, Info} from "../../common/interfaceApi";
 import {CurrencyPipe} from "@angular/common";
 import {FaIconComponent} from "@fortawesome/angular-fontawesome";
-import {faEdit, faTrash} from "@fortawesome/free-solid-svg-icons";
+import {faEdit, faSearch, faTrash} from "@fortawesome/free-solid-svg-icons";
 import {RouterLink} from "@angular/router";
+import {SearchService} from "../../services/search.service";
 
 @Component({
   selector: 'app-cosmetic-list',
@@ -21,6 +22,7 @@ import {RouterLink} from "@angular/router";
 })
 export class CosmeticListComponent {
   private readonly cosmeticService:CosmeticService = inject(CosmeticService);
+  private readonly searchService:SearchService = inject(SearchService);
   cosmeticos!:Cosmetico[];
   info!:Info;
   page:number = 1;
@@ -28,10 +30,11 @@ export class CosmeticListComponent {
   totalPage!:number;
   protected readonly faEdit = faEdit;
   protected readonly faTrash = faTrash;
-
+  protected readonly faSearch = faSearch;
 
   constructor() {
     this.loadCosmeticos();
+    this.loadSearch();
   }
 
   protected loadCosmeticos() {
@@ -56,4 +59,27 @@ export class CosmeticListComponent {
       }
     )
   }
+
+  // BARRA DE BUSQUEDA
+  buscar(event:any){
+    //this.searchService.search(event.target.value);
+    const query = event.target.value;
+    if (query) {
+      this.searchService.search(query); // Si hay texto, busca
+    } else {
+      this.loadCosmeticos(); // Si está vacío, recarga todos los productos
+    }
+  }
+  private loadSearch() {
+    this.searchService.start().subscribe(
+      {
+        next: value => {
+          this.cosmeticos = value;
+        },
+        error: err => console.log(err),
+        complete: () => console.log("Completed"),
+      }
+    )
+  }
+
 }
