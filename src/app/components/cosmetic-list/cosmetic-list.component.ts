@@ -4,9 +4,10 @@ import {CosmeticService} from "../../services/cosmetic.service";
 import {Cosmetico, Info} from "../../common/interfaceApi";
 import {CurrencyPipe} from "@angular/common";
 import {FaIconComponent} from "@fortawesome/angular-fontawesome";
-import {faEdit, faSearch, faTrash} from "@fortawesome/free-solid-svg-icons";
+import {faCartShopping, faEdit, faSearch, faTrash} from "@fortawesome/free-solid-svg-icons";
 import {RouterLink} from "@angular/router";
 import {SearchService} from "../../services/search.service";
+import {CartService} from "../../services/cart.service";
 
 @Component({
   selector: 'app-cosmetic-list',
@@ -23,6 +24,8 @@ import {SearchService} from "../../services/search.service";
 export class CosmeticListComponent {
   private readonly cosmeticService:CosmeticService = inject(CosmeticService);
   private readonly searchService:SearchService = inject(SearchService);
+  private readonly cartService:CartService = inject(CartService);
+
   cosmeticos!:Cosmetico[];
   info!:Info;
   page:number = 1;
@@ -82,4 +85,10 @@ export class CosmeticListComponent {
     )
   }
 
+  // CARRITO DE LA COMPRA
+  addToCart(cosmetico:Cosmetico){
+    this.cartService.addToCart(cosmetico);
+  }
+
+  protected readonly faCartShopping = faCartShopping;
 }

@@ -1,0 +1,33 @@
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <h2 class="text-center text-primary">PEDIDO</h2>
+
+    @if (cosmeticList.length === 0) {
+      <h3 class="text-center">No hay productos</h3>
+      <img src="https://img.freepik.com/vector-gratis/ilustracion-concepto-carrito-compras-supermercado_114360-22408.jpg">
+    }
+
+    @for (cosmetico of cosmeticList; track cosmetico._id){
+
+      <div class="card bg-gradient">
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <h4>{{cosmetico.name}}</h4>
+            <img class="img-fluid card-img" src="{{cosmetico.image}}">
+          </div>
+          <p class="card-text text-primary">{{cosmetico.price | currency: "EUR"}}</p>
+        </div>
+      </div>
+    }
+
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <div class="card-title text-primary">TOTAL</div>
+          <div class="text-end">{{precioTotal | currency: "EUR"}}</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

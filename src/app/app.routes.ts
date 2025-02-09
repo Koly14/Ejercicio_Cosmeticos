@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import {CosmeticListComponent} from "./components/cosmetic-list/cosmetic-list.component";
 import {CosmeticEditComponent} from "./components/cosmetic-edit/cosmetic-edit.component";
 import {InicioComponent} from "./components/inicio/inicio.component";
+import {CartComponent} from "./components/cart/cart.component";
 
 export const routes: Routes = [
   {
@@ -26,6 +27,10 @@ export const routes: Routes = [
     // Para añadir (Usan mismo componente y distinta URL)
     path: "cosmetic/add",
     component: CosmeticEditComponent
+  },
+  {
+    path: "cosmetic/cart",
+    component: CartComponent,
   },
   {
     path: "**",

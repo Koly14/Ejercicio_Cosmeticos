@@ -60,9 +60,14 @@
 
         <div class="card-footer">
           <div class="row align-items-center">
-            <div class="col-md-6 text-center">
+            <div class="col-md-3 text-center">
               <div class="btn btn-outline-primary" routerLink="/cosmetic/edit/{{cosmetico._id}}">
                 <fa-icon [icon]="faEdit"></fa-icon>
+              </div>
+            </div>
+            <div class="col-md-3 text-center">
+              <div class="btn btn-outline-primary" (click)="addToCart(cosmetico)">
+                <fa-icon [icon]="faCartShopping"></fa-icon>
               </div>
             </div>
             <div class="col-md-6 text-start">
