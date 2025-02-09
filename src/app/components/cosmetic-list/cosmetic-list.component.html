@@ -1,0 +1,66 @@
+<div class="row">
+
+  <!-- Pagination -->
+  <div class="col-12 d-flex justify-content-center align-content-center">
+    <ngb-pagination
+      [collectionSize]="totalPage"
+      [pageSize]="pageSize"
+      [(page)]="page"
+      (pageChange)="loadCosmeticos()"
+      [rotate]="true">
+    </ngb-pagination>
+  </div>
+
+  @for (cosmetico of cosmeticos;track cosmetico._id){
+    <div class="col-md-4">
+      <div class="card shadow">
+
+        <div class="card-header">
+          <div class="row d-flex text-center align-items-center">
+            <div class="col-md-10">
+              <h1 class="card-title text-capitalize text-primary ">{{cosmetico.name}}</h1>
+            </div>
+            <div class="col-md-2">
+              <div class="btn btn-outline-danger" (click)="deleteItem(cosmetico._id)">
+                <fa-icon [icon]="faTrash"></fa-icon>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <div class="row text-center align-items-center">
+            <div class="col-md-6">
+              <img class="card-img img-fluid" src="{{cosmetico.image}}" alt="">
+            </div>
+            <div class="col-md-6">
+              <h3>Marca</h3>
+              <div class="badge bg-primary">{{cosmetico.brand}}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <div class="row align-items-center">
+            <div class="col-md-6 text-center">
+              <div class="btn btn-outline-primary" routerLink="/cosmetic/edit/{{cosmetico._id}}">
+                <fa-icon [icon]="faEdit"></fa-icon>
+              </div>
+            </div>
+            <div class="col-md-6 text-start">
+              <div class="text-body">
+                <strong>Tipo: </strong> {{cosmetico.type}}
+              </div>
+              <div class="text-body">
+                <strong>Precio: </strong>{{cosmetico.price | currency: "EUR" }}
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  }
+
+
+</div>

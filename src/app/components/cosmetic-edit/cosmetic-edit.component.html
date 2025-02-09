@@ -1,0 +1,131 @@
+@defer (when cosmetico){
+
+  <div class="text-center">
+    @if (this.editar){
+    <h2>EDITAR</h2>
+    } @else {
+      <h2>NUEVO</h2>
+    }
+
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <form [formGroup]="formCosmeticos" (ngSubmit)="onSubmit()">
+
+        <!--NAME-->
+        <div class="form-floating mb-3">
+          <input class="form-control" required formControlName="name"
+                 type="text" placeholder="name" id="name">
+          <label for="name">Name</label>
+        </div>
+        <!--VALIDATION-->
+        @if (name?.invalid && (name?.dirty || !name?.untouched)){
+          @if (name?.errors?.['required']){
+            <div class="alert alert-danger">
+              <h4>Nombre es obligado</h4>
+            </div>
+          }
+          @if (name?.errors?.['minlength']) {
+            <div class="alert alert-danger">
+              <h4>No menor a 2 carácteres</h4>
+            </div>
+          }
+        }
+
+        <!--IMAGE-->
+        <div class="form-floating mb-3">
+          <input class="form-control" required formControlName="image"
+                 type="text" placeholder="image" id="image">
+          <label for="image">Image</label>
+        </div>
+        <!--VALIDATION-->
+        @if (image?.invalid && (image?.dirty || !image?.untouched)){
+          @if (image?.errors?.['required']){
+            <div class="alert alert-danger">
+              <h4>Image es obligado</h4>
+            </div>
+          }
+        }
+
+        <!--TYPE-->
+        <div class="form-floating mb-3">
+          <input class="form-control" required formControlName="type"
+                 type="text" placeholder="name" id="type">
+          <label for="type">Type</label>
+        </div>
+        <!--VALIDATION-->
+        @if (type?.invalid && (type?.dirty || !type?.untouched)){
+          @if (type?.errors?.['required']){
+            <div class="alert alert-danger">
+              <h4>Type es obligado</h4>
+            </div>
+          }
+          @if (type?.errors?.['minlength']) {
+            <div class="alert alert-danger">
+              <h4>No menor a 2 carácteres</h4>
+            </div>
+          }
+        }
+
+        <!--BRAND-->
+        <div class="form-floating mb-3">
+          <input class="form-control" required formControlName="brand"
+                 type="text" placeholder="brand" id="brand">
+          <label for="brand">Brand</label>
+        </div>
+        <!--VALIDATION-->
+        @if (brand?.invalid && (brand?.dirty || !brand?.untouched)){
+          @if (brand?.errors?.['required']){
+            <div class="alert alert-danger">
+              <h4>Brand es obligado</h4>
+            </div>
+          }
+          @if (brand?.errors?.['minlength']) {
+            <div class="alert alert-danger">
+              <h4>No menor a 2 carácteres</h4>
+            </div>
+          }
+        }
+
+        <!--PRICE-->
+        <div class="form-floating mb-3">
+          <input class="form-control" required formControlName="price"
+                 type="text" placeholder="price" id="price">
+          <label for="price">Price</label>
+        </div>
+        <!--VALIDATION-->
+        @if (price?.invalid && (price?.dirty || !price?.untouched)){
+          @if (price?.errors?.['required']){
+            <div class="alert alert-danger">
+              <h4>Price es obligado</h4>
+            </div>
+          }
+        }
+
+        <!--Submit-->
+        <div class="text-center">
+          <div class="btn p-2">
+            <button type="submit" class="btn-outline-success">{{id? "Editar":"Crear"}}</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-6">
+    <!-- VISUAL DEL CARD A MODIFICAR -->
+      <div class="card shadow">
+        <div class="card-header text-center">
+          <h2 class="text-capitalize">{{name?.value}}</h2>
+        </div>
+        <div class="card-img">
+          <img class="img-fluid" src="{{image?.value}}" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+
+} @placeholder (){
+  <div class="text-center">
+    <h2>Loading...</h2>
+  </div>
+}
+
