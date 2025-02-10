@@ -12,7 +12,7 @@
       <div class="card bg-gradient">
         <div class="card-body">
           <div class="d-flex justify-content-between">
-            <h4>{{cosmetico.name}}</h4>
+            <h4 class="text-capitalize">{{cosmetico.name}}</h4>
             <img class="img-fluid card-img" src="{{cosmetico.image}}">
           </div>
           <p class="card-text text-primary">{{cosmetico.price | currency: "EUR"}}</p>
@@ -22,9 +22,13 @@
 
     <div class="card">
       <div class="card-body">
-        <div class="d-flex justify-content-between">
-          <div class="card-title text-primary">TOTAL</div>
-          <div class="text-end">{{precioTotal | currency: "EUR"}}</div>
+        <div class="d-flex justify-content-between align-content-center">
+          <div class="card-title text-primary text-start">TOTAL</div>
+          <div class="text-end">
+            <div class="badge bg-primary">
+              {{precioTotal | currency: "EUR"}}
+            </div>
+          </div>
         </div>
 
       </div>

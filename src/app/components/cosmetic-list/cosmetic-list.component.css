@@ -1,0 +1,7 @@
+.card{
+  border: 1px solid black;
+  min-height: 500px!important;
+}
+.card-img{
+  max-height: 200px!important;
+}

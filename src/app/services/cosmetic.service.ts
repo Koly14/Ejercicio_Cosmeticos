@@ -2,13 +2,14 @@ import {inject, Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ApiResponseCosmeticos, Cosmetico, StatusMessage} from "../common/interfaceApi";
 import {Observable} from "rxjs";
+import {environment} from "../environment/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CosmeticService {
   private readonly http: HttpClient = inject(HttpClient);
-  private readonly urlBase:string = "https://api-cosmeticos.vercel.app/api/v2/cosmeticos";
+  private readonly urlBase:string = environment.urlBase;
 
   constructor() { }
 

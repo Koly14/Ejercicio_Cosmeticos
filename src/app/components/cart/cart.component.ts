@@ -18,8 +18,6 @@ export class CartComponent {
   cosmeticList!:Cosmetico[];
   precioTotal!:number;
 
-
-
   constructor() {
     this.loadCosmetic();
     this.loadtotal();
