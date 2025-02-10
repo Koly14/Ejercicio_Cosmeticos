@@ -18,10 +18,13 @@ export class CosmeticEditComponent implements OnInit{
   // Input que traigo desde otro sitio
   @Input('id') id!:string;
   private readonly cosmeticService:CosmeticService = inject(CosmeticService);
-  // Formulario
-  private readonly formBuilder:FormBuilder = inject(FormBuilder);
   cosmetico!:Cosmetico;
   editar:boolean = false;
+  // Para pasar a otra pagina desde el TS (El Routerlink es a traves del HTML)
+  private readonly router:Router = inject(Router);
+
+  // Formulario
+  private readonly formBuilder:FormBuilder = inject(FormBuilder);
   formCosmeticos:FormGroup = this.formBuilder.group(
     {
       _id: [],
@@ -32,10 +35,8 @@ export class CosmeticEditComponent implements OnInit{
       price: ["", [Validators.required]],
     }
   );
-  private readonly router:Router = inject(Router);
 
   // GETTERS
-
   get name (){
     return this.formCosmeticos.get("name");
   }
@@ -83,13 +84,11 @@ export class CosmeticEditComponent implements OnInit{
   onSubmit() {
     if (this.id){
       // Insert edit
-
       /** IMPORTANTE
       * Cuando tienes que hacer update o insertar - El objeto que pasamos es el nuevo
       * que rellenamos en el formulario
       * this.formCosmeticos.getRawValue()
       */
-
       this.cosmeticService.updateCosmetico(this.id, this.formCosmeticos.getRawValue()).subscribe(
         {
           next: value => {
@@ -103,13 +102,11 @@ export class CosmeticEditComponent implements OnInit{
 
     } else {
       // insert New
-
       /** IMPORTANTE
       * Cuando tienes que hacer update o insertar - El objeto que pasamos es el nuevo
       * que rellenamos en el formulario
       * this.formCosmeticos.getRawValue()
       */
-
       this.cosmeticService.insertCosmetico(this.formCosmeticos.getRawValue()).subscribe(
         {
           next: value => {
